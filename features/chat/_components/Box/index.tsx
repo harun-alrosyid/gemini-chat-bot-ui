@@ -1,12 +1,15 @@
-import { UIMessage } from 'ai';
+
 import { Bot, User } from 'lucide-react';
-import { FunctionComponent, RefAttributes } from 'react';
+import { FunctionComponent, HTMLAttributes, RefAttributes } from 'react';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 import { cn } from '@/lib/utils';
-import { ScrollArea, ScrollAreaProps } from '@radix-ui/react-scroll-area';
 
-interface BoxProps extends ScrollAreaProps, RefAttributes<HTMLDivElement> {
-  messages: UIMessage[];
+import { Message } from '../../_hooks/useMessageChat';
+
+interface BoxProps extends  HTMLAttributes<HTMLDivElement> {
+  messages: Array<Message>;
   isLoading: boolean;
 }
 
@@ -17,8 +20,9 @@ const Box: FunctionComponent<BoxProps> = ({
   ...attrs
 }) => {
   const isMessagesEmpty = messages.length === 0;
+
   return (
-    <ScrollArea className={cn("flex-1 p-6", className)} {...attrs}>
+    <div className={cn("min-h-[55vh] max-h-[70vh] overflow-auto",className)} {...attrs}>
       <div className="space-y-4">
         {isMessagesEmpty && (
           <div className="text-center py-12">
@@ -29,19 +33,19 @@ const Box: FunctionComponent<BoxProps> = ({
               Welcome to AI Assistant
             </h3>
             <p className="text-slate-500 dark:text-slate-400">
-              Start a conversation by typing a message below
+              Start a conversation by typing a message be
             </p>
           </div>
         )}
 
-        {messages.map((message) => {
+        {messages.map((message,index) => {
           if (!message) {
             throw new Error("Message is null or undefined");
           }
 
           return (
             <div
-              key={message.id}
+              key={index}
               className={`flex gap-3 ${
                 message.role === "user" ? "justify-end" : "justify-start"
               }`}
@@ -60,7 +64,9 @@ const Box: FunctionComponent<BoxProps> = ({
                 }`}
               >
                 <div className="text-sm leading-relaxed whitespace-pre-wrap">
-                  {message.content}
+                  <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                    {message.content}
+                  </ReactMarkdown>
                 </div>
               </div>
 
@@ -94,7 +100,7 @@ const Box: FunctionComponent<BoxProps> = ({
           </div>
         )}
       </div>
-    </ScrollArea>
+    </div>
   );
 };
 
