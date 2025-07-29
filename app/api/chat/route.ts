@@ -1,17 +1,18 @@
-import { openai } from "@ai-sdk/openai"
-import { streamText } from "ai"
-
-// Allow streaming responses up to 30 seconds
-export const maxDuration = 30
-
 export async function POST(req: Request) {
-  const { messages } = await req.json()
+  const body = await req.text();
 
-  const result = streamText({
-    model: openai("gpt-4o"),
-    system: "You are a helpful, friendly AI assistant. Keep your responses concise and helpful.",
-    messages,
-  })
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/chat`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body,
+  });
 
-  return result.toDataStreamResponse()
+  return new Response(response.body, {
+    status: response.status,
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
 }

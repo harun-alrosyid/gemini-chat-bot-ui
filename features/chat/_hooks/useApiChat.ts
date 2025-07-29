@@ -33,7 +33,7 @@ const fetcher = async (
 
 const useApiChat = () => {
   return useSWRMutation<Message[], Error, string, MessagePaylod>(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/chat`,
+    "/api/chat",
     fetcher
   );
 };
