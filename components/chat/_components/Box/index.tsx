@@ -1,7 +1,7 @@
 import { UIMessage } from 'ai';
 import { ScrollArea } from 'components/components/ui/scroll-area';
 import { Bot, User } from 'lucide-react';
-import { FunctionComponent, HTMLAttributes, RefAttributes } from 'react';
+import { FunctionComponent, RefAttributes } from 'react';
 
 import { ScrollAreaProps } from '@radix-ui/react-scroll-area';
 
