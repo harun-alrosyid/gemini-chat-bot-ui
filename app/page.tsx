@@ -1,6 +1,6 @@
 "use client";
 
-import Chat from 'components/components/chat';
+import Chat from '@/features/chat';
 
 export default function ChatBot() {
   return <Chat />;

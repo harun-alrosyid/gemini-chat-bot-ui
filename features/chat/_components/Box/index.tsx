@@ -1,9 +1,9 @@
 import { UIMessage } from 'ai';
-import { ScrollArea } from 'components/components/ui/scroll-area';
 import { Bot, User } from 'lucide-react';
 import { FunctionComponent, RefAttributes } from 'react';
 
-import { ScrollAreaProps } from '@radix-ui/react-scroll-area';
+import { cn } from '@/lib/utils';
+import { ScrollArea, ScrollAreaProps } from '@radix-ui/react-scroll-area';
 
 interface BoxProps extends ScrollAreaProps, RefAttributes<HTMLDivElement> {
   messages: UIMessage[];
@@ -18,10 +18,7 @@ const Box: FunctionComponent<BoxProps> = ({
 }) => {
   const isMessagesEmpty = messages.length === 0;
   return (
-    <ScrollArea
-      className={`flex-1 p-6${className ? className : ""} `}
-      {...attrs}
-    >
+    <ScrollArea className={cn("flex-1 p-6", className)} {...attrs}>
       <div className="space-y-4">
         {isMessagesEmpty && (
           <div className="text-center py-12">

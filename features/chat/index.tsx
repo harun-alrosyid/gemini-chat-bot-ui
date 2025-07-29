@@ -1,8 +1,8 @@
 import { FunctionComponent, HTMLAttributes, useEffect, useRef } from 'react';
 
+import { Card } from '@/components/ui/card';
 import { useChat } from '@ai-sdk/react';
 
-import { Card } from '../ui/card';
 import Box from './_components/Box';
 import Form from './_components/Form';
 import Header from './_components/Header';

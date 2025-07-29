@@ -1,7 +1,9 @@
-import { Button } from 'components/components/ui/button';
-import { Input } from 'components/components/ui/input';
 import { Send } from 'lucide-react';
 import { FunctionComponent, HTMLAttributes } from 'react';
+
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { cn } from '@/lib/utils';
 
 interface FormProps extends HTMLAttributes<HTMLDivElement> {
   input: string;
@@ -20,9 +22,10 @@ const Form: FunctionComponent<FormProps> = ({
 }) => {
   return (
     <div
-      className={`p-6 border-t border-slate-200 dark:border-slate-700${
-        className ? className : ""
-      }`}
+      className={cn(
+        "p-6 border-t border-slate-200 dark:border-slate-700",
+        className
+      )}
       {...attrs}
     >
       <form onSubmit={handleSubmit} className="flex gap-3">
