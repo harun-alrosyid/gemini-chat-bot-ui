@@ -1,3 +1,8 @@
+# Gemini Chat Bot
+
+This is a project simple chat bot using geneartive ai (Gemini Ai)
+
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
@@ -19,6 +24,17 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+
+
+## Integration Services
+
+This project only for ui web, for running full feature you should running service from api.
+For example you can running backend service form this repository [`gemini-flash-api`](https://github.com/harun-alrosyid/gemini-flash-api)
+
+## Demo Project 
+
+![demo](https://github.com/harun-alrosyid/gemini-chat-bot-ui/blob/main/demo.gif?raw=true)
+
 
 ## Learn More
 

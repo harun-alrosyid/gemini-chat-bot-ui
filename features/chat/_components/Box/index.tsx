@@ -1,14 +1,13 @@
-
 import { Bot, User } from 'lucide-react';
-import { FunctionComponent, HTMLAttributes, RefAttributes } from 'react';
+import { FunctionComponent, HTMLAttributes } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
 import { cn } from '@/lib/utils';
 
-import { Message } from '../../_hooks/useMessageChat';
+import { Message } from '../../_hooks/useApiChat';
 
-interface BoxProps extends  HTMLAttributes<HTMLDivElement> {
+interface BoxProps extends HTMLAttributes<HTMLDivElement> {
   messages: Array<Message>;
   isLoading: boolean;
 }
@@ -22,7 +21,10 @@ const Box: FunctionComponent<BoxProps> = ({
   const isMessagesEmpty = messages.length === 0;
 
   return (
-    <div className={cn("min-h-[55vh] max-h-[70vh] overflow-auto",className)} {...attrs}>
+    <div
+      className={cn("min-h-[55vh] max-h-[70vh] overflow-auto", className)}
+      {...attrs}
+    >
       <div className="space-y-4">
         {isMessagesEmpty && (
           <div className="text-center py-12">
@@ -38,7 +40,7 @@ const Box: FunctionComponent<BoxProps> = ({
           </div>
         )}
 
-        {messages.map((message,index) => {
+        {messages.map((message, index) => {
           if (!message) {
             throw new Error("Message is null or undefined");
           }
